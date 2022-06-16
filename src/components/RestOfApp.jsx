@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 
 import { AuthContext } from "../providers/AuthProvider";
 import LoginForm from "./LoginForm";
+import HeroesList from "./HeroesList";
 
 function RestOfApp() {
   const authContext = useContext(AuthContext);
@@ -11,6 +12,9 @@ function RestOfApp() {
   return (
     <div className="App">{user ? "You are logged in!" : "not logged in "}
     <LoginForm/>
+    <br/>
+    <br/>
+    <HeroesList/>
     </div>
   );
 }
