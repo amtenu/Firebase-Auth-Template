@@ -5,8 +5,10 @@ function LoginForm() {
   const authContext = useContext(AuthContext);
   const loginFn = authContext.login;
   const logoutFn = authContext.logout;
+  const loginError=authContext.authError
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   return (
     <div>
@@ -24,6 +26,11 @@ function LoginForm() {
       <br />
       <button onClick={() => loginFn(email, password)}>LOG IN</button>
       <button onClick={() => logoutFn()}>LOG Out</button>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      {loginError && <p style={{color:'red'}}>{loginError}</p>}
     </div>
   );
 }
