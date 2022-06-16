@@ -5,9 +5,10 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {getAuth} from 'firebase/auth'
+import { getFirestore } from "firebase/firestore"
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBAwp-NvIz_AR1nK-eRKquamZM4znIytHk",
+  apiKey: process.env.REACT_FIREBASE_PROVIDER_API_KEY,//Key in .env file 
   authDomain: "c8-cyo-firebase-3f307.firebaseapp.com",
   projectId: "c8-cyo-firebase-3f307",
   storageBucket: "c8-cyo-firebase-3f307.appspot.com",
@@ -18,13 +19,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig); //initialize the project
 const auth=getAuth(app)
+const db=getFirestore(app)
 export const FirebaseContext = React.createContext();
 
 
 //
 function FirebaseProvider(props) {
   const children = props.children;
-  const theValues = { app,auth };
+  const theValues = { app,auth ,db};
 
   return (
     <FirebaseContext.Provider value={theValues}>
