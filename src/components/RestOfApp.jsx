@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import LoginForm from "./LoginForm";
 import HeroesList from "./HeroesList";
+import AddHero from "./AddHero";
 
 function RestOfApp() {
   const authContext = useContext(AuthContext);
@@ -15,6 +16,9 @@ function RestOfApp() {
     <br/>
     <br/>
     <HeroesList/>
+    <br/>
+    <br/>
+<AddHero/>
     </div>
   );
 }
