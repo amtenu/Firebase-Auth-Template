@@ -1,29 +1,18 @@
-import logo from '../logo.svg';
-import '../App.css';
-import React, { useContext } from 'react'
-import { FirebaseContext } from '../providers/FirebaseProvider';
 
+import "../App.css";
+import React, { useContext } from "react";
 
-
+import { AuthContext } from "../providers/AuthProvider";
+import LoginForm from "./LoginForm";
 
 function RestOfApp() {
-    const fbContext=useContext(FirebaseContext)
-    const app=fbContext.app
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
   return (
-    <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-     <pre>Firebase App
-        <br/>
-        <br/>
-        {JSON.stringify(app)}
-     </pre>
-    </header>
-  </div>
-  )
+    <div className="App">{user ? "You are logged in!" : "not logged in "}
+    <LoginForm/>
+    </div>
+  );
 }
 
-export default RestOfApp
+export default RestOfApp;
