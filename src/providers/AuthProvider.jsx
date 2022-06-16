@@ -12,6 +12,7 @@ export const AuthContext = React.createContext();
 function AuthProvider(props) {
   const children = props.children;
   const [user, setUser] = useState(null);
+  const [authError,setAuthError]=useState()
 
   const fbContext = useContext(FirebaseContext);
   const auth = fbContext.auth;
@@ -23,12 +24,15 @@ function AuthProvider(props) {
         password
       );
       if (userCredential) {
+        setAuthError(null);
         console.log("Logged in", userCredential.user);
       } else {
         console.log("Login Failed");
+        setAuthError("Duuno why but Login Failed")
       }
     } catch (ex) {
       console.log("Auth Failure", ex.message);
+      setAuthError(ex.message)
     }
   };
 
@@ -46,7 +50,7 @@ return unSubscribe;//to shut down onAuthStateChange listener
 
 
 
-  const theValues = { user,login,logout };
+  const theValues = { user,login,logout,authError };
 
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
