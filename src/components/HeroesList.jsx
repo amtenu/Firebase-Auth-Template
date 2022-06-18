@@ -14,7 +14,7 @@ function HeroesList() {
         console.log("No Docs Found");
       } else {
         let heroesData = querySnap.docs.map(doc => 
-          doc.data());
+        { return {...doc.data(),DOC_ID:doc.id}});
         setHeroes(heroesData);
       }
     });
